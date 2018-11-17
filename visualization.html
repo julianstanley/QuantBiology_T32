@@ -2,27 +2,28 @@
 <html>
 
 <head>
-    <title>T32 Distribution 2016-2018</title>
+    <title>T32 Grant Distributions</title>
     
     <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
     <script type="text/javascript">
-        var viz;
-        
         function initViz() {
             var containerDiv = document.getElementById("vizContainer"),
                 url = "https://public.tableau.com/views/T32_Distribution/Sheet1?:embed=y&:display_count=yes&publish=yes",
                 options = {
-                    hideTabs: true
-                };        
+                    hideTabs: true,
+                    onFirstInteractive: function () {
+                        console.log("Run this code when the viz has finished loading.");
+                    }
+                };
             
-            viz = new tableau.Viz(containerDiv, url, options); 
+            // Create a viz object and embed it in the container div.
+            var viz = new tableau.Viz(containerDiv, url, options); 
         }
-         
     </script>
 </head>
 
 <body onload="initViz();">
-    <div id="vizContainer" style="width:1600px; height:1200px; overflow:auto;"></div>
+    <div id="vizContainer" style="width:1600px; height:1200px;"></div>    
 </body>
 
 </html>
