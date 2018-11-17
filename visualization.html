@@ -2,28 +2,38 @@
 <html>
 
 <head>
-    <title>Distribution of T32 grants 2016-2018</title>
+    <title>T32 Distribution 2016-2018</title>
     
     <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
     <script type="text/javascript">
+        var viz;
+        
         function initViz() {
             var containerDiv = document.getElementById("vizContainer"),
                 url = "https://public.tableau.com/views/T32_Distribution/Sheet1?:embed=y&:display_count=yes&publish=yes",
                 options = {
-                    hideTabs: true,
-                    onFirstInteractive: function () {
-                        console.log("Run this code when the viz has finished loading.");
-                    }
-                };
+                    hideTabs: true
+                };        
             
-            // Create a viz object and embed it in the container div.
-            var viz = new tableau.Viz(containerDiv, url, options); 
+            viz = new tableau.Viz(containerDiv, url, options); 
+        }
+        function vizResize() {
+            var width = document.getElementById("resizeWidth").value;
+            var height = document.getElementById("resizeHeight").value;
+            viz.setFrameSize(parseInt(width, 10), parseInt(height, 10));
         }
     </script>
 </head>
 
 <body onload="initViz();">
-    <div id="vizContainer"></div>    
+    <div id="vizContainer" style="width:800px; height:700px; overflow:auto;"></div>
+    <div id="controls" style="padding:20px;">
+        <form id="resizeForm">
+            <input type="text" id="resizeWidth" placeholder="Width">
+            <input type="text" id="resizeHeight" placeholder="Height">
+            <button type="button" onClick="vizResize();">Resize</button>
+        </form>
+    </div>
 </body>
 
 </html>
